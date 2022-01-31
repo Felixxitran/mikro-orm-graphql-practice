@@ -7,6 +7,8 @@ import { appendFile } from 'fs'
 import { createECDH } from 'crypto'
 import { createClientRouter } from './routes/create_client'
 import { createBankerRouter } from './routes/create_banker'
+import { createTransactionRouter } from './routes/create_transaction'
+import { deleteClientRouter } from './routes/delete_clients'
 console.log('project successfully initiated')
 
 //first create database in postgresql using typeorm
@@ -29,8 +31,9 @@ const init = async () => {
     app.use(express.json())
     app.use(createClientRouter)
     app.use(createBankerRouter)
-    app.listen(8000, () => {
-      console.log('app running on port 8000')
+    app.use(createTransactionRouter)
+    app.listen(3000, () => {
+      console.log('app running on port 3000')
     })
   } catch (error) {
     console.log(error)

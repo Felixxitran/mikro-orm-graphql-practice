@@ -15,7 +15,10 @@ import { Banker } from './banker'
 @Entity('Client')
 export class Client extends Person {
   //have to import primary column or else will get error
-
+  @Column({
+    type: 'numeric',
+  })
+  balance: number
   @Column({
     default: true,
     name: 'active',
